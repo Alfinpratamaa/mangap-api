@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MANGAP API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            position: relative;
+        }
+        pre code {
+            display: block;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        .copy-button.copied {
+            background-color: #28a745;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .catatan {
+            color: #c71616;
+            font-size: 1em;
+            font-style: normal;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MANGAP API</h1>
+        <h2>Documentation</h2>
+        <p><strong>BASE URL</strong> = <code>http://localhost:8000</code></p>
+        <p class="catatan">hosting atau lebih bagus jalankan di localhost</p>
+
+        <h3>Recommended Comic</h3>
+        <pre><code>/recommended</code><button class="copy-button" onclick="copyToClipboard(this, '/recommended')">Copy</button></pre>
+        <p>example : <a target="_blank" href="http://localhost:8000/recommended">http://localhost:8000/recommended</a></p>
+
+        <h3>Popular Comic</h3>
+        <pre><code>/popular</code><button class="copy-button" onclick="copyToClipboard(this, '/popular')">Copy</button></pre>
+        <p>example : <a target="_blank" href="http://localhost:8000/popular">http://localhost:8000/popular</a></p>
+
+        <h3>List Comic</h3>
+        <pre><code>/daftar-komik/:page</code><button class="copy-button" onclick="copyToClipboard(this, '/daftar-komik/:page')">Copy</button></pre>
+        <p>example : <a target="_blank" href="http://localhost:8000/daftar-komik/1">http://localhost:8000/daftar-komik/1</a></p>
+
+        <h3>Detail Comic</h3>
+        <pre><code>/detail/[endpoint]</code><button class="copy-button" onclick="copyToClipboard(this, '/detail/[endpoint]')">Copy</button></pre>
+        <p>example : <a target="_blank" href="http://localhost:8000/detail/solo-leveling">http://localhost:8000/detail/solo-leveling</a></p>
+
+        <h3>Search Comic</h3>
+        <pre><code>/search?keyword=[keyword]</code><button class="copy-button" onclick="copyToClipboard(this, '/search?keyword=[keyword]')">Copy</button></pre>
+        <p>example : <a target="_blank" href="http://localhost:8000/search?keyword=solo">http://localhost:8000/search?keyword=solo</a></p>
+
+        <h3>Read Comic</h3>
+        <pre><code>/read/[endpoint]</code><button class="copy-button" onclick="copyToClipboard(this, '/read/[endpoint]')">Copy</button></pre>
+        <p>example : <a target="_blank" href="http://localhost:8000/read/solo-leveling-chapter-33-bahasa-indonesia/">http://localhost:8000/read/solo-leveling-chapter-33-bahasa-indonesia/</a></p>
+
+        <h3>Genre</h3>
+        <pre><code>/genre</code><button class="copy-button" onclick="copyToClipboard(this, '/genre')">Copy</button></pre>
+        <p>example : <a target="_blank" href="http://localhost:8000/genre">http://localhost:8000/genre</a></p>
+
+        <h3>Genre Comic</h3>
+        <pre><code>/genre/[endpoint]</code><button class="copy-button" onclick="copyToClipboard(this, '/genre/[endpoint]')">Copy</button></pre>
+        <p>example : <a target="_blank" href="http://localhost:8000/genre/action?page=1">http://localhost:8000/genre/action?page=1</a></p>
+    </div>
+
+    <script>
+        function copyToClipboard(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
