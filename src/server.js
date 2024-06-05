@@ -11,7 +11,7 @@ app.use(helmet());
 app.use(express.json());
 
 if (process.env.NODE_ENV === "production") {
-  //set static folder
+  //set static <folder></folder>
   app.use(express.static("/"));
 }
 app.get("/", (req, res) => {
