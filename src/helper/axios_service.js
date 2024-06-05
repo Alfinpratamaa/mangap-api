@@ -2,7 +2,7 @@ const { default: axios } = require("axios");
 
 const AxiosService = async (url) => {
   return new Promise(async (resolve, reject) => {
-    const _url = url == null ? url : encodeURI(url);
+    const _url = url ? encodeURI(url) : url;
     try {
       const response = await axios.get(_url, {
         headers: {
