@@ -2,7 +2,7 @@ const cheerio = require("cheerio");
 const { AxiosService } = require("../helper/axios_service");
 const { responseApi } = require("../helper/response_api");
 const { response } = require("express");
-const baseUrl = "https://komikcast.lol";
+const baseUrl = "https://komikcast.moe";
 
 const getTerbaru = async (req, res) => {
   try {
@@ -81,9 +81,10 @@ const getTerbaru = async (req, res) => {
           ".list-update_items > .list-update_items-wrapper > .list-update_item"
         )
         .each((i, data) => {
-          const thumbnail = $(data)
-            .find("a > .list-update_item-image > img")
-            .attr("src");
+          const thumbnail =
+            $(data).find("a > .list-update_item-image > img").attr("src") ||
+            $(data).find("a > .list-update_item-image > img").attr("data-src");
+
           const href = $(data).find("a").attr("href");
           const type = $(data)
             .find("a > .list-update_item-image > .type")
@@ -193,9 +194,10 @@ const getGenre = async (req, res) => {
             .find("a > .list-update_item-image > .type")
             .text()
             .trim();
-          const thumbnail = $(data)
-            .find("a > .list-update_item-image > img")
-            .attr("src");
+          const thumbnail =
+            $(data).find("a > .list-update_item-image > img").attr("src") ||
+            $(data).find("a > .list-update_item-image > img").attr("data-src");
+
           const rating = $(data)
             .find(
               "a > .list-update_item-info > .other > .rate > .rating > .numscore"
@@ -314,9 +316,9 @@ const searchComic = async (req, res) => {
             .find("a > .list-update_item-info > .other > .chapter")
             .text()
             .trim();
-          thumbnail = $(data)
-            .find("a > .list-update_item-image > img")
-            .attr("src");
+          thumbnail =
+            $(data).find("a > .list-update_item-image > img").attr("src") ||
+            $(data).find("a > .list-update_item-image > img").attr("data-src");
           komikList.push({
             title,
             type,
@@ -408,9 +410,13 @@ const getComicDetail = async (req, res) => {
         .find(".komik_info-description > .komik_info-description-sinopsis > p")
         .text()
         .trim();
-      thumbnail = element
-        .find(".komik_info-cover-box > .komik_info-cover-image > img")
-        .attr("src");
+      thumbnail =
+        element
+          .find(".komik_info-cover-box > .komik_info-cover-image > img")
+          .attr("src") ||
+        element
+          .find(".komik_info-cover-box > .komik_info-cover-image > img")
+          .attr("data-src");
 
       updatedOn = element
         .find(
@@ -492,7 +498,10 @@ const getPopular = async (req, res) => {
             .find(".leftseries > span:nth-child(2)")
             .text()
             .trim();
-          const thumbnail = $(data).find(".imgseries > a > img").attr("src");
+          const thumbnail =
+            $(data).find(".imgseries > a > img").attr("src") ||
+            $(data).find(".imgseries > a > img").attr("data-src");
+
           const href = $(data).find(".imgseries > a").attr("href");
           komikList.push({
             title,
@@ -543,16 +552,17 @@ const getRecommendedComics = async (req, res) => {
           .text()
           .trim();
         const href = $(data).find("a").attr("href");
-        const thumbnail = $(data)
-          .find("a > .splide__slide-image > img")
-          .attr("src");
+        const thumbnail =
+          $(data).find("a > .splide__slide-image > img").attr("src") ||
+          $(data).find("a > .splide__slide-image > img").attr("data-src");
+
         komikList.push({
           title,
           href: href?.replace(`${baseUrl}/komik`, ""),
           rating,
+          thumbnail,
           chapter,
           type,
-          thumbnail,
         });
       });
       return responseApi(
@@ -623,9 +633,9 @@ const getDaftarKomik = async (req, res) => {
           .find("a > .list-update_item-image > .type")
           .text()
           .trim();
-        const thumbnail = $(data)
-          .find("a > .list-update_item-image > img")
-          .attr("src");
+        const thumbnail =
+          $(data).find("a > .list-update_item-image > img").attr("src") ||
+          $(data).find("a > .list-update_item-image > img").attr("data-src");
         const rating = $(data)
           .find(
             "a > .list-update_item-info > .other > .rate > .rating > .numscore"
