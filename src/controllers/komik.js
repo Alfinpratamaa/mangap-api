@@ -2,7 +2,7 @@ const cheerio = require("cheerio");
 const { AxiosService } = require("../helper/axios_service");
 const { responseApi } = require("../helper/response_api");
 const { response } = require("express");
-const baseUrl = "https://komikcast.moe";
+const baseUrl = "https://komikcast.mom";
 
 const getTerbaru = async (req, res) => {
   try {
