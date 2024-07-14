@@ -2,7 +2,8 @@ const cheerio = require("cheerio");
 const { AxiosService } = require("../helper/axios_service");
 const { responseApi } = require("../helper/response_api");
 const { response } = require("express");
-const baseUrl = "https://komikcast.mom";
+const cloudscraper = require("cloudscraper");
+const baseUrl = "https://komikcast.cz";
 
 const getTerbaru = async (req, res) => {
   try {
@@ -336,6 +337,14 @@ const searchComic = async (req, res) => {
     console.log("ini error", er.message);
     return responseApi(res, 500, er.message);
   }
+};
+
+const getTest = async (req, res) => {
+  const response = await cloudscraper.get(baseUrl);
+  const body = await response.body;
+  const $ = cheerio.load(body);
+  const promises = [];
+  console.log($.html());
 };
 
 const getComicDetail = async (req, res) => {
@@ -704,4 +713,5 @@ module.exports = {
   getPopular,
   getRecommendedComics,
   getDaftarKomik,
+  getTest,
 };

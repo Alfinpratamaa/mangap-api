@@ -10,8 +10,9 @@ router.get("/read/:url", komik.readComic);
 router.get("/search", komik.searchComic);
 router.get("/detail/:url", komik.getComicDetail);
 router.get("/popular", komik.getPopular);
-router.get("/recommended", komik.getRecommendedComics);
+router.get("/recommended", komik.getTest);
 router.get("/daftar-komik/:page", komik.getDaftarKomik);
+router.get("/testing", komik.getTest);
 
 router.all("*", (req, res) => responseApi(res, 404, "route not found"));
 
