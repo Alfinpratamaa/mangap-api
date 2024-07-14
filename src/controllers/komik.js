@@ -2,7 +2,6 @@ const cheerio = require("cheerio");
 const { AxiosService } = require("../helper/axios_service");
 const { responseApi } = require("../helper/response_api");
 const { response } = require("express");
-const cloudscraper = require("cloudscraper");
 const baseUrl = "https://komikcast.cz";
 
 const getTerbaru = async (req, res) => {
