@@ -338,13 +338,7 @@ const searchComic = async (req, res) => {
   }
 };
 
-const getTest = async (req, res) => {
-  const response = await cloudscraper.get(baseUrl);
-  const body = await response.body;
-  const $ = cheerio.load(body);
-  const promises = [];
-  console.log($.html());
-};
+
 
 const getComicDetail = async (req, res) => {
   try {
@@ -712,5 +706,4 @@ module.exports = {
   getPopular,
   getRecommendedComics,
   getDaftarKomik,
-  getTest,
 };

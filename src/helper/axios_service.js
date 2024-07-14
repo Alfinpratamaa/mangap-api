@@ -1,5 +1,4 @@
 const { default: axios } = require("axios");
-const cloudscraper = require("cloudscraper");
 
 const AxiosService = async (url) => {
   return new Promise(async (resolve, reject) => {
